@@ -328,6 +328,7 @@ if __name__ == "__main__":
     net.eval()
     in_ten = torch.randn(1, 3, 768, 1536).cuda()
     out, out16, out32 = net(in_ten)
+    print(in_ten)
     print(out.shape)
     torch.save(net.state_dict(), 'STDCNet813.pth')
 

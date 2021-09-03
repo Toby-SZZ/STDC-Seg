@@ -1,0 +1,268 @@
+[
+  {
+    "hasInstances": false,
+    "category": "void",
+    "catid": 0,
+    "name": "ignore",
+    "ignoreInEval": true,
+    "id": 0,
+    "color": [
+      0,
+      0,
+      0
+    ],
+    "trainId": 0
+  },
+  {
+    "hasInstances": false,
+    "category": "void",
+    "catid": 0,
+    "name": "ground",
+    "ignoreInEval": true,
+    "id": 1,
+    "color": [
+      0,
+      0,
+      0
+    ],
+    "trainId": 1
+  },
+  {
+    "hasInstances": false,
+    "category": "void",
+    "catid": 0,
+    "name": "lane",
+    "ignoreInEval": true,
+    "id": 2,
+    "color": [
+      0,
+      0,
+      0
+    ],
+    "trainId": 2
+  },
+  {
+    "hasInstances": false,
+    "category": "void",
+    "catid": 0,
+    "name": "passing_allowed",
+    "ignoreInEval": true,
+    "id": 3,
+    "color": [
+      0,
+      0,
+      0
+    ],
+    "trainId": 3
+  },
+  {
+    "hasInstances": false,
+    "category": "void",
+    "catid": 0,
+    "name": "passing_forbidden",
+    "ignoreInEval": true,
+    "id": 4,
+    "color": [
+      0,
+      0,
+      0
+    ],
+    "trainId": 4
+  },
+  {
+    "hasInstances": false,
+    "category": "void",
+    "catid": 0,
+    "name": "priority_go_ahead",
+    "ignoreInEval": true,
+    "id": 5,
+    "color": [
+      111,
+      74,
+      0
+    ],
+    "trainId": 5
+  },
+  {
+    "hasInstances": false,
+    "category": "void",
+    "catid": 0,
+    "name": "priority_yield",
+    "ignoreInEval": true,
+    "id": 6,
+    "color": [
+      81,
+      0,
+      81
+    ],
+    "trainId": 6
+  },
+  {
+    "hasInstances": false,
+    "category": "void",
+    "catid": 0,
+    "name": "priority_stop",
+    "ignoreInEval": false,
+    "id": 7,
+    "color": [
+      128,
+      64,
+      128
+    ],
+    "trainId": 7
+  },
+  {
+    "hasInstances": false,
+    "category": "void",
+    "catid": 0,
+    "name": "intersection_straight",
+    "ignoreInEval": false,
+    "id": 8,
+    "color": [
+      244,
+      35,
+      232
+    ],
+    "trainId": 8
+  },
+  {
+    "hasInstances": false,
+    "category": "flat",
+    "catid": 1,
+    "name": "intersection_connected",
+    "ignoreInEval": true,
+    "id": 9,
+    "color": [
+      250,
+      170,
+      160
+    ],
+    "trainId": 9
+  },
+  {
+    "hasInstances": false,
+    "category": "flat",
+    "catid": 1,
+    "name": "intersection_unconnected",
+    "ignoreInEval": true,
+    "id": 10,
+    "color": [
+      230,
+      150,
+      140
+    ],
+    "trainId": 10
+  },
+  {
+    "hasInstances": false,
+    "category": "construction",
+    "catid": 2,
+    "name": "begin_speed_limit",
+    "ignoreInEval": false,
+    "id": 11,
+    "color": [
+      70,
+      70,
+      70
+    ],
+    "trainId": 11
+  },
+  {
+    "hasInstances": false,
+    "category": "construction",
+    "catid": 2,
+    "name": "end_speed_limit",
+    "ignoreInEval": false,
+    "id": 12,
+    "color": [
+      102,
+      102,
+      156
+    ],
+    "trainId": 12
+  },
+  {
+    "hasInstances": false,
+    "category": "construction",
+    "catid": 2,
+    "name": "barred_area",
+    "ignoreInEval": false,
+    "id": 13,
+    "color": [
+      190,
+      153,
+      153
+    ],
+    "trainId": 13
+  },
+  {
+    "hasInstances": false,
+    "category": "construction",
+    "catid": 2,
+    "name": "crosswalk",
+    "ignoreInEval": true,
+    "id": 14,
+    "color": [
+      180,
+      165,
+      180
+    ],
+    "trainId": 14
+  },
+  {
+    "hasInstances": false,
+    "category": "construction",
+    "catid": 2,
+    "name": "obstacle2d",
+    "ignoreInEval": true,
+    "id": 15,
+    "color": [
+      150,
+      100,
+      100
+    ],
+    "trainId": 15
+  },
+  {
+    "hasInstances": false,
+    "category": "construction",
+    "catid": 2,
+    "name": "obstacle3d",
+    "ignoreInEval": true,
+    "id": 16,
+    "color": [
+      150,
+      120,
+      90
+    ],
+    "trainId": 16
+  },
+  {
+    "hasInstances": false,
+    "category": "object",
+    "catid": 3,
+    "name": "traffic_island",
+    "ignoreInEval": false,
+    "id": 17,
+    "color": [
+      153,
+      153,
+      153
+    ],
+    "trainId": 17
+  },
+  {
+    "hasInstances": false,
+    "category": "object",
+    "catid": 3,
+    "name": "parking_area",
+    "ignoreInEval": true,
+    "id": 18,
+    "color": [
+      153,
+      153,
+      153
+    ],
+    "trainId": 18
+  }
+]

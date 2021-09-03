@@ -56,7 +56,7 @@ def parse_args():
             '--n_img_per_gpu',
             dest = 'n_img_per_gpu',
             type = int,
-            default = 16,
+            default = 4,
             )
     parse.add_argument(
             '--max_iter',
@@ -155,7 +155,7 @@ def train():
     torch.cuda.set_device(args.local_rank)
     dist.init_process_group(
                 backend = 'nccl',
-                init_method = 'tcp://127.0.0.1:33274',
+                init_method = 'env://',
                 world_size = torch.cuda.device_count(),
                 rank=args.local_rank
                 )
@@ -203,6 +203,7 @@ def train():
                     sampler = sampler_val,
                     num_workers = n_workers_val,
                     drop_last = False)
+
 
     ## model
     ignore_idx = 255
@@ -379,12 +380,12 @@ def train():
                 single_scale1 = MscEvalV0()
                 mIOU50 = single_scale1(net, dlval, n_classes)
 
-                single_scale2= MscEvalV0(scale=0.75)
-                mIOU75 = single_scale2(net, dlval, n_classes)
+                # single_scale2= MscEvalV0(scale=0.75)
+                # mIOU75 = single_scale2(net, dlval, n_classes)
 
 
-            save_pth = osp.join(save_pth_path, 'model_iter{}_mIOU50_{}_mIOU75_{}.pth'
-            .format(it+1, str(round(mIOU50,4)), str(round(mIOU75,4))))
+            save_pth = osp.join(save_pth_path, 'model_iter{}_mIOU50_{}.pth'
+            .format(it+1, str(round(mIOU50,4))))
             
             state = net.module.state_dict() if hasattr(net, 'module') else net.state_dict()
             if dist.get_rank()==0: 
@@ -401,15 +402,15 @@ def train():
                     
                 logger.info('max mIOU model saved to: {}'.format(save_pth))
             
-            if mIOU75 > maxmIOU75:
-                maxmIOU75 = mIOU75
-                save_pth = osp.join(save_pth_path, 'model_maxmIOU75.pth'.format(it+1))
-                state = net.module.state_dict() if hasattr(net, 'module') else net.state_dict()
-                if dist.get_rank()==0: torch.save(state, save_pth)
-                logger.info('max mIOU model saved to: {}'.format(save_pth))
+            # if mIOU75 > maxmIOU75:
+            #     maxmIOU75 = mIOU75
+            #     save_pth = osp.join(save_pth_path, 'model_maxmIOU75.pth'.format(it+1))
+            #     state = net.module.state_dict() if hasattr(net, 'module') else net.state_dict()
+            #     if dist.get_rank()==0: torch.save(state, save_pth)
+            #     logger.info('max mIOU model saved to: {}'.format(save_pth))
             
-            logger.info('mIOU50 is: {}, mIOU75 is: {}'.format(mIOU50, mIOU75))
-            logger.info('maxmIOU50 is: {}, maxmIOU75 is: {}.'.format(maxmIOU50, maxmIOU75))
+            logger.info('mIOU50 is: {}'.format(mIOU50))
+            logger.info('maxmIOU50 is: {}'.format(maxmIOU50))
 
             net.train()
     

@@ -8,8 +8,6 @@ import torchvision.transforms as transforms
 
 import os.path as osp
 import os
-from PIL import Image
-import numpy as np
 import json
 
 from transform import *
@@ -17,7 +15,7 @@ from transform import *
 
 
 class CityScapes(Dataset):
-    def __init__(self, rootpth, cropsize=(640, 480), mode='train', 
+    def __init__(self, rootpth, cropsize=(640, 480), mode='train',
     randomscale=(0.125, 0.25, 0.375, 0.5, 0.675, 0.75, 0.875, 1.0, 1.25, 1.5), *args, **kwargs):
         super(CityScapes, self).__init__(*args, **kwargs)
         assert mode in ('train', 'val', 'test', 'trainval')
@@ -25,7 +23,7 @@ class CityScapes(Dataset):
         print('self.mode', self.mode)
         self.ignore_lb = 255
 
-        with open('./cityscapes_info.json', 'r') as fr:
+        with open('./ISF.json', 'r') as fr:
             labels_info = json.load(fr)
         self.lb_map = {el['id']: el['trainId'] for el in labels_info}
         
@@ -33,29 +31,25 @@ class CityScapes(Dataset):
         ## parse img directory
         self.imgs = {}
         imgnames = []
-        impth = osp.join(rootpth, 'leftImg8bit', mode)
-        folders = os.listdir(impth)
-        for fd in folders:
-            fdpth = osp.join(impth, fd)
-            im_names = os.listdir(fdpth)
-            names = [el.replace('_leftImg8bit.png', '') for el in im_names]
-            impths = [osp.join(fdpth, el) for el in im_names]
-            imgnames.extend(names)
-            self.imgs.update(dict(zip(names, impths)))
+        impth = osp.join(rootpth, 'leftImg8bit2', mode)
+
+        im_names = os.listdir(impth)
+        names = [el.replace('.png', '') for el in im_names]
+        impths = [osp.join(impth, el) for el in im_names]
+        imgnames.extend(names)
+        self.imgs.update(dict(zip(names, impths)))
 
         ## parse gt directory
         self.labels = {}
         gtnames = []
-        gtpth = osp.join(rootpth, 'gtFine', mode)
-        folders = os.listdir(gtpth)
-        for fd in folders:
-            fdpth = osp.join(gtpth, fd)
-            lbnames = os.listdir(fdpth)
-            lbnames = [el for el in lbnames if 'labelIds' in el]
-            names = [el.replace('_gtFine_labelIds.png', '') for el in lbnames]
-            lbpths = [osp.join(fdpth, el) for el in lbnames]
-            gtnames.extend(names)
-            self.labels.update(dict(zip(names, lbpths)))
+        gtpth = osp.join(rootpth, 'gtFine2', mode)
+
+        lbnames = os.listdir(gtpth)
+        lbnames = [el for el in lbnames if 'png' in el]
+        names = [el.replace('.png', '') for el in lbnames]
+        lbpths = [osp.join(gtpth, el) for el in lbnames]
+        gtnames.extend(names)
+        self.labels.update(dict(zip(names, lbpths)))
 
         self.imnames = imgnames
         self.len = len(self.imnames)
